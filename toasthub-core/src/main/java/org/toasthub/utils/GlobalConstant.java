@@ -53,4 +53,14 @@ public class GlobalConstant {
 	
 	public static final String USERREF = "USERREF";
 	public static final String HARDDELETE = "HARDDELETE";
+	
+	public static final String TRADES = "TRADES";
+	public static final String TRADE = "TRADE";
+	public static final String HISTORICAL_ANALYSES = "HISTORICAL_ANALYSES";
+	public static final String HISTORICAL_ANALYSIS = "HISTORICAL_ANALYSIS";
+	public static final String IDENTIFIER = "IDENTIFIER";
+	public static final String TYPE = "TYPE";
+	public static final String EPOCHSECONDS = "EPOCHSECONDS";
+	public static final String STOCK = "STOCK";
 }
+	
