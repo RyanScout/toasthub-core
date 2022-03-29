@@ -61,6 +61,6 @@ public class GlobalConstant {
 	public static final String IDENTIFIER = "IDENTIFIER";
 	public static final String TYPE = "TYPE";
 	public static final String EPOCHSECONDS = "EPOCHSECONDS";
-	public static final String STOCK = "STOCK";
+	public static final String SYMBOL = "SYMBOL";
 }
 	
