@@ -24,19 +24,7 @@ public class Symbol extends BaseEntity {
             .concat(Stream.of(Symbol.CRYPTOSYMBOLS), Stream.of(Symbol.STOCKSYMBOLS)).toArray(size -> new String[size]);
 
     private String symbol;
-    private TechnicalIndicator technicalIndicator;
     private CustomTechnicalIndicator customTechnicalIndicator;
-
-    @JsonIgnore
-    @ManyToOne(targetEntity = TechnicalIndicator.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "technical_indicator_id")
-    public TechnicalIndicator getTechnicalIndicator() {
-        return technicalIndicator;
-    }
-
-    public void setTechnicalIndicator(TechnicalIndicator technicalIndicator) {
-        this.technicalIndicator = technicalIndicator;
-    }
 
     @JsonIgnore
     @ManyToOne(targetEntity = CustomTechnicalIndicator.class, fetch = FetchType.LAZY)

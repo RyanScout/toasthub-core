@@ -20,6 +20,7 @@ public class TechnicalIndicator extends BaseEntity {
     private String evaluationPeriod = "";
     private String technicalIndicatorKey = "";
     private String technicalIndicatorType = "";
+    private String symbol ="";
     private int checked = 0;
     private int flashed = 0;
     private int successes = 0;
@@ -34,7 +35,6 @@ public class TechnicalIndicator extends BaseEntity {
     private String UBBType;
     private BigDecimal standardDeviations;
 
-    private Set<Symbol> symbols = new LinkedHashSet<Symbol>();
     private Set<TechnicalIndicatorDetail> details = new LinkedHashSet<TechnicalIndicatorDetail>();
 
     public TechnicalIndicator() {
@@ -45,13 +45,12 @@ public class TechnicalIndicator extends BaseEntity {
         this.setCreated(Instant.now());
     }
 
-    @OneToMany(mappedBy = "technicalIndicator", cascade = CascadeType.ALL)
-    public Set<Symbol> getSymbols() {
-        return symbols;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setSymbols(Set<Symbol> symbols) {
-        this.symbols = symbols;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     @OneToMany(mappedBy = "technicalIndicator", cascade = CascadeType.ALL)
