@@ -1,10 +1,12 @@
 package org.toasthub.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,13 +21,66 @@ public class CustomTechnicalIndicator extends BaseEntity {
     private String evaluationPeriod;
     private String technicalIndicatorType;
     private String technicalIndicatorKey;
-    private Set<Symbol> symbols = new LinkedHashSet<Symbol>();
 
+    private String shortSMAType;
+    private String longSMAType;
+
+    private String LBBType;
+    private String UBBType;
+    private BigDecimal standardDeviations;
+
+    
+    private Set<Symbol> symbols = new LinkedHashSet<Symbol>();
     private ArrayList<Object> technicalIndicators = new ArrayList<Object>();
    
 
+    
     public String getTechnicalIndicatorType() {
         return technicalIndicatorType;
+    }
+
+    public BigDecimal getStandardDeviations() {
+        return standardDeviations;
+    }
+
+    public void setStandardDeviations(BigDecimal standardDeviations) {
+        this.standardDeviations = standardDeviations;
+    }
+
+    @Column(name = "ubb_type")
+    public String getUBBType() {
+        return UBBType;
+    }
+
+    public void setUBBType(String uBBType) {
+        this.UBBType = uBBType;
+    }
+
+    @Column(name = "lbb_type")
+    public String getLBBType() {
+        return LBBType;
+    }
+
+    public void setLBBType(String lBBType) {
+        this.LBBType = lBBType;
+    }
+
+    @Column(name = "long_sma_type")
+    public String getLongSMAType() {
+        return longSMAType;
+    }
+
+    public void setLongSMAType(String longSMAType) {
+        this.longSMAType = longSMAType;
+    }
+
+    @Column(name = "short_sma_type")
+    public String getShortSMAType() {
+        return shortSMAType;
+    }
+
+    public void setShortSMAType(String shortSMAType) {
+        this.shortSMAType = shortSMAType;
     }
 
     @OneToMany(mappedBy = "customTechnicalIndicator", cascade = CascadeType.ALL)

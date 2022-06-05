@@ -16,11 +16,19 @@ import org.toasthub.common.BaseEntity;
 @Entity
 @Table(name = "ta_technical_indicator")
 public class TechnicalIndicator extends BaseEntity {
+
+    public static final String GOLDENCROSS = "GoldenCross";
+    public static final String LOWERBOLLINGERBAND = "LowerBollingerBand";
+    public static final String UPPERBOLLINGERBAND = "UpperBollingerBand";
+    public static final String[] TECHNICALINDICATORTYPES = {
+            TechnicalIndicator.GOLDENCROSS, TechnicalIndicator.LOWERBOLLINGERBAND, TechnicalIndicator.UPPERBOLLINGERBAND
+    };
+
     private boolean flashing = false;
     private String evaluationPeriod = "";
     private String technicalIndicatorKey = "";
     private String technicalIndicatorType = "";
-    private String symbol ="";
+    private String symbol = "";
     private int checked = 0;
     private int flashed = 0;
     private int successes = 0;
