@@ -83,7 +83,7 @@ public class CustomTechnicalIndicator extends BaseEntity {
         this.shortSMAType = shortSMAType;
     }
 
-    @OneToMany(mappedBy = "customTechnicalIndicator", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customTechnicalIndicator", cascade = CascadeType.ALL, orphanRemoval = true)
     public Set<Symbol> getSymbols() {
         return symbols;
     }
