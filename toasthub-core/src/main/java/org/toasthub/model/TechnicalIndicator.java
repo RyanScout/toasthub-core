@@ -21,7 +21,7 @@ public class TechnicalIndicator extends BaseEntity {
     public static final String LOWERBOLLINGERBAND = "LowerBollingerBand";
     public static final String UPPERBOLLINGERBAND = "UpperBollingerBand";
     public static final String[] TECHNICALINDICATORTYPES = {
-            TechnicalIndicator.GOLDENCROSS, TechnicalIndicator.LOWERBOLLINGERBAND, TechnicalIndicator.UPPERBOLLINGERBAND
+            GOLDENCROSS, LOWERBOLLINGERBAND, UPPERBOLLINGERBAND
     };
 
     private boolean flashing = false;

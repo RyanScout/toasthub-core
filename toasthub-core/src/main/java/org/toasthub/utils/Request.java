@@ -15,11 +15,11 @@ public class Request {
 	public Map<String,Object> getParams() {
 		return params;
 	}
+
 	public void setParams(Map<String,Object> params) {
 		this.params = params;
 	}
 
-	
 	public Object getParam(String key){
 		if (params != null && params.containsKey(key)){
 			return params.get(key);
