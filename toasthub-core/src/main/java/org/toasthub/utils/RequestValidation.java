@@ -1,6 +1,7 @@
 package org.toasthub.utils;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class RequestValidation {
             return;
         }
 
-        if (i <= 0 || i > 999) {
+        if (i <= 0 || i > 1000) {
+            response.setStatus("Short SMA period must be between 0 and 1000");
             return;
         }
 
@@ -56,8 +58,8 @@ public class RequestValidation {
             return;
         }
 
-        if (i <= 0 || i > 999) {
-            response.setStatus(Response.ERROR);
+        if (i <= 0 || i > 1000) {
+            response.setStatus("Short SMA period must be between 0 and 1000");
             return;
         }
 
@@ -84,8 +86,8 @@ public class RequestValidation {
             return;
         }
 
-        if (i <= 0 || i > 999) {
-            response.setStatus(Response.ERROR);
+        if (i <= 0 || i > 1000) {
+            response.setStatus("Lower bollinger band amount must be between 0 and 1000");
             return;
         }
 
@@ -112,8 +114,8 @@ public class RequestValidation {
             return;
         }
 
-        if (i <= 0 || i > 999) {
-            response.setStatus(Response.ERROR);
+        if (i <= 0 || i > 1000) {
+            response.setStatus("Upper bollinger band period must be between 0 and 1000");
             return;
         }
 
@@ -135,8 +137,8 @@ public class RequestValidation {
             num = BigDecimal.valueOf((Double) request.getParam("standardDeviations"));
         }
 
-        if (num.compareTo(BigDecimal.ZERO) <= 0 || num.compareTo(BigDecimal.TEN) > 0) {
-            response.setStatus(Response.ERROR);
+        if (num.compareTo(BigDecimal.ZERO) <= 0 || num.compareTo(new BigDecimal(3)) > 0) {
+            response.setStatus("Standard Deviations must be between 3 and 0 ");
             return;
         }
         num = num.setScale(1, BigDecimal.ROUND_HALF_UP);
@@ -159,7 +161,7 @@ public class RequestValidation {
         }
 
         if (num.compareTo(BigDecimal.ZERO) <= 0) {
-            response.setStatus(Response.ERROR);
+            response.setStatus("Dollar amount must be greater than zero");
             return;
         }
 
@@ -182,7 +184,7 @@ public class RequestValidation {
         }
 
         if (num.compareTo(BigDecimal.ZERO) <= 0) {
-            response.setStatus(Response.ERROR);
+            response.setStatus("Share amount must be greater than zero");
             return;
         }
 
@@ -205,7 +207,7 @@ public class RequestValidation {
         }
 
         if (num.compareTo(BigDecimal.ZERO) <= 0) {
-            response.setStatus(Response.ERROR);
+            response.setStatus("Trailing stop amount must be greater than zero");
             return;
         }
 
@@ -228,7 +230,7 @@ public class RequestValidation {
         }
 
         if (num.compareTo(BigDecimal.ZERO) <= 0) {
-            response.setStatus(Response.ERROR);
+            response.setStatus("Profit Limit must be greater than 0");
             return;
         }
 
@@ -251,7 +253,7 @@ public class RequestValidation {
         }
 
         if (num.compareTo(BigDecimal.ZERO) <= 0) {
-            response.setStatus(Response.ERROR);
+            response.setStatus("Budget must be greater than 0");
             return;
         }
 
@@ -266,10 +268,13 @@ public class RequestValidation {
             name = (String)request.getParam("name");
         }
 
-        name = name.replaceAll("//s+", "").replaceAll("|", "").replaceAll("&" , "");
+        if(name.replaceAll("\\s+", "").equals("")){
+            response.setStatus("Name cannot be empty");
+            return;
+        }
 
-        if(name.equals("")){
-            response.setStatus(Response.ERROR);
+        if(name.contains("(") || name.contains(")") || name.contains("&") || name.contains("|")){
+            response.setStatus("Name cannot contain logical operators");
             return;
         }
 
