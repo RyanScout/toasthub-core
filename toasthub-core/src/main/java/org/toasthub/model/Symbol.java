@@ -17,11 +17,18 @@ import org.toasthub.common.BaseEntity;
 @Table(name = "ta_symbol")
 public class Symbol extends BaseEntity {
     public static final String SPY = "SPY";
+    public static final String AAPL = "AAPL";
+    public static final String TSLA = "TSLA";
+
     public static final String BTCUSD = "BTCUSD";
-    public static final String[] CRYPTOSYMBOLS = { Symbol.BTCUSD };
-    public static final String[] STOCKSYMBOLS = { Symbol.SPY };
+    public static final String LTCUSD = "LTCUSD";
+    public static final String ETHUSD = "ETHUSD";
+
+    public static final String[] CRYPTOSYMBOLS = { BTCUSD, LTCUSD, ETHUSD };
+    public static final String[] STOCKSYMBOLS = { SPY, AAPL, TSLA };
+
     public static final String[] SYMBOLS = Stream
-            .concat(Stream.of(Symbol.CRYPTOSYMBOLS), Stream.of(Symbol.STOCKSYMBOLS)).toArray(size -> new String[size]);
+            .concat(Stream.of(CRYPTOSYMBOLS), Stream.of(STOCKSYMBOLS)).toArray(size -> new String[size]);
 
     private String symbol;
     private CustomTechnicalIndicator customTechnicalIndicator;
@@ -42,7 +49,7 @@ public class Symbol extends BaseEntity {
     }
 
     public void setSymbol(String symbol) {
-        if(Arrays.asList(Symbol.SYMBOLS).contains(symbol)){
+        if (Arrays.asList(Symbol.SYMBOLS).contains(symbol)) {
             this.symbol = symbol;
         }
     }
