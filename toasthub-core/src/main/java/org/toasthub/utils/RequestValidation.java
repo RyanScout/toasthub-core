@@ -1,6 +1,7 @@
 package org.toasthub.utils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class RequestValidation {
 
@@ -136,7 +137,8 @@ public class RequestValidation {
             response.setStatus("Standard Deviations must be between 3 and 0 ");
             return;
         }
-        num = num.setScale(1, BigDecimal.ROUND_HALF_UP);
+        
+        num = num.setScale(1, RoundingMode.HALF_UP);
 
         request.addParam("STANDARD_DEVIATIONS", num);
     }
@@ -160,7 +162,7 @@ public class RequestValidation {
             return;
         }
 
-        num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+        num = num.setScale(2, RoundingMode.HALF_UP);
         request.addParam("CURRENCY_AMOUNT", num);
     }
 
@@ -183,7 +185,7 @@ public class RequestValidation {
             return;
         }
 
-        num = num.setScale(4, BigDecimal.ROUND_HALF_UP);
+        num = num.setScale(4, RoundingMode.HALF_UP);
         request.addParam("CURRENCY_AMOUNT", num);
     }
 
@@ -206,7 +208,7 @@ public class RequestValidation {
             return;
         }
 
-        num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+        num = num.setScale(2, RoundingMode.HALF_UP);
         request.addParam("TRAILING_STOP_AMOUNT", num);
     }
 
@@ -229,7 +231,7 @@ public class RequestValidation {
             return;
         }
 
-        num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+        num = num.setScale(2, RoundingMode.HALF_UP);
         request.addParam("PROFIT_LIMIT_AMOUNT", num);
     }
 
@@ -252,7 +254,8 @@ public class RequestValidation {
             return;
         }
 
-        num = num.setScale(2, BigDecimal.ROUND_HALF_UP);
+        num = num.setScale(2, RoundingMode.HALF_UP);
+        
         request.addParam("BUDGET", num);
     }
 
