@@ -20,26 +20,28 @@ public class TechnicalIndicator extends BaseEntity {
     public static final String GOLDENCROSS = "GoldenCross";
     public static final String LOWERBOLLINGERBAND = "LowerBollingerBand";
     public static final String UPPERBOLLINGERBAND = "UpperBollingerBand";
-    
+
     public static final String[] TECHNICALINDICATORTYPES = {
             GOLDENCROSS, LOWERBOLLINGERBAND, UPPERBOLLINGERBAND
     };
 
     private boolean flashing = false;
+    private boolean updating = false;
+
     private String evaluationPeriod = "";
     private String technicalIndicatorKey = "";
     private String technicalIndicatorType = "";
     private String symbol = "";
-    private int checked = 0;
-    private int flashed = 0;
-    private int successes = 0;
+
+    private long checked = 0;
+    private long flashed = 0;
+    private long successes = 0;
     private long firstCheck = 0;
     private long lastCheck = 0;
     private long lastFlash = 0;
 
     private String shortSMAType;
     private String longSMAType;
-
     private String LBBType;
     private String UBBType;
     private BigDecimal standardDeviations;
@@ -52,6 +54,15 @@ public class TechnicalIndicator extends BaseEntity {
         this.setArchive(false);
         this.setLocked(false);
         this.setCreated(Instant.now());
+    }   
+
+    @OneToMany(mappedBy = "technicalIndicator", cascade = CascadeType.ALL)
+    public Set<TechnicalIndicatorDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(Set<TechnicalIndicatorDetail> details) {
+        this.details = details;
     }
 
     public String getSymbol() {
@@ -62,14 +73,6 @@ public class TechnicalIndicator extends BaseEntity {
         this.symbol = symbol;
     }
 
-    @OneToMany(mappedBy = "technicalIndicator", cascade = CascadeType.ALL)
-    public Set<TechnicalIndicatorDetail> getDetails() {
-        return details;
-    }
-
-    public void setDetails(Set<TechnicalIndicatorDetail> details) {
-        this.details = details;
-    }
 
     public String getTechnicalIndicatorType() {
         return technicalIndicatorType;
@@ -167,31 +170,39 @@ public class TechnicalIndicator extends BaseEntity {
         this.firstCheck = firstCheck;
     }
 
-    public int getSuccesses() {
-        return successes;
+    public void setFlashing(boolean flashing) {
+        this.flashing = flashing;
     }
 
-    public void setSuccesses(int successes) {
-        this.successes = successes;
-    }
-
-    public int getFlashed() {
-        return flashed;
-    }
-
-    public void setFlashed(int flashed) {
-        this.flashed = flashed;
-    }
-
-    public int getChecked() {
+    public long getChecked() {
         return checked;
     }
 
-    public void setChecked(int checked) {
+    public void setChecked(long checked) {
         this.checked = checked;
     }
 
-    public void setFlashing(boolean flashing) {
-        this.flashing = flashing;
+    public long getFlashed() {
+        return flashed;
+    }
+
+    public void setFlashed(long flashed) {
+        this.flashed = flashed;
+    }
+
+    public long getSuccesses() {
+        return successes;
+    }
+
+    public void setSuccesses(long successes) {
+        this.successes = successes;
+    }
+
+    public boolean isUpdating() {
+        return updating;
+    }
+
+    public void setUpdating(boolean updating) {
+        this.updating = updating;
     }
 }

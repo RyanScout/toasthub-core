@@ -9,9 +9,9 @@ import org.toasthub.common.BaseEntity;
 @Entity
 @Table(name = "ta_configuration")
 public class Configuration extends BaseEntity {
-    private boolean backloaded  = false;
+    private boolean backloaded = false;
 
-    @Column(name ="backloaded")
+    @Column(name = "backloaded")
     public boolean isBackloaded() {
         return backloaded;
     }
@@ -19,5 +19,5 @@ public class Configuration extends BaseEntity {
     public void setBackloaded(boolean backloaded) {
         this.backloaded = backloaded;
     }
-    
+
 }
